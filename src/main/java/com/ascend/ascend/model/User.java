@@ -21,6 +21,8 @@ public class User {
     @Column(nullable = true)
     private String password;
 
+    public User() {}
+
     // constructor
     public User(String email, String password) {
         this.email = email;

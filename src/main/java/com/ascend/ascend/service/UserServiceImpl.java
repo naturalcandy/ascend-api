@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ascend.ascend.dto.LoginDto;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -34,13 +35,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void login(LoginDto loginDto) throws Exception {               
-        List<User> user = userRepository.findByemail(loginDto.getEmail());
-        if (user.isEmpty() || !user.get(0).getPassword().equals(loginDto.getPassword())) {
+        Optional<User> user = userRepository.findByemail(loginDto.getEmail());
+        if (user.isEmpty() || !user.get().getPassword().equals(loginDto.getPassword())) {
             throw new Exception("Invalid email/password."); 
         }
         return;
     }
-
- 
- 
 }
