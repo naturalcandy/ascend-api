@@ -21,6 +21,14 @@ public class User {
     @Column(nullable = true)
     private String password;
 
+    @Basic(optional = true)
+    @Column(nullable = true)
+    private String firstname;
+
+    @Basic(optional = true)
+    @Column(nullable = true)
+    private String lastname;
+
     public User() {}
 
     // constructor
@@ -47,11 +55,24 @@ public class User {
         return this.password;
     }
     
+    public String getFirstName() {
+        return this.firstname;
+    }
+    public String getLastName() {
+        return this.lastname;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
-
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setFirstName(String firstname) {
+        this.firstname = firstname;
+    }
+    public void setLastName(String lastname) {
+        this.lastname = lastname;
     }
 }

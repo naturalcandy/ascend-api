@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.ascend.ascend.model.User;
 import com.ascend.ascend.dto.LoginDto;
+import com.ascend.ascend.dto.SignUpDto;
 
 
 public interface UserService {
@@ -15,5 +16,7 @@ public interface UserService {
     public List<User> getAllUsers();
 
     public void login(LoginDto loginDto) throws Exception;
+
+    public void signup(SignUpDto signUpDto) throws Exception;
 
 }

@@ -4,6 +4,7 @@ import com.ascend.ascend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ascend.ascend.dto.LoginDto;
+import com.ascend.ascend.dto.SignUpDto;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +40,16 @@ public class UserServiceImpl implements UserService {
         if (user.isEmpty() || !user.get().getPassword().equals(loginDto.getPassword())) {
             throw new Exception("Invalid email/password."); 
         }
+        return;
+    }
+
+    public void signup(SignUpDto signupDto) throws Exception {
+        User user = new User();
+        user.setEmail(signupDto.getEmail());
+        user.setPassword(signupDto.getPassword());
+        user.setFirstName(signupDto.getFirstName());
+        user.setLastName(signupDto.getLastName());
+        createUser(user);
         return;
     }
 }

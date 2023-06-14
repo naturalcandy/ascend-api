@@ -1,6 +1,7 @@
 package com.ascend.ascend.controller;
 
 import com.ascend.ascend.dto.LoginDto;
+import com.ascend.ascend.dto.SignUpDto;
 import com.ascend.ascend.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,15 @@ public class UserController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }  
+    }
+
+    @PostMapping ("/signup")
+    public ResponseEntity<?> signup(@RequestBody SignUpDto signupDto) {
+        try {
+            userService.signup(signupDto);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }
