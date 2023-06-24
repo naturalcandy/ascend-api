@@ -3,8 +3,10 @@ package com.ascend.ascend.dto;
 public class SignUpDto {
     public String email;
     public String password;
-    public String firstname;
-    public String lastname;
+    public String firstName;
+    public String lastName;
+    public String birthday;
+    public String phoneNumber;
 
 
     public String getEmail() { 
@@ -16,10 +18,18 @@ public class SignUpDto {
     }
 
     public String getFirstName() {
-        return firstname;
+        return firstName;
     }
     public String getLastName() {
-        return lastname;
+        return lastName;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public void setEmail(String email) {
@@ -29,10 +39,18 @@ public class SignUpDto {
         this.password = password;
     }
 
-    public void setFirstName(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName= firstName;
     }
-    public void setLastName(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName= lastName;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

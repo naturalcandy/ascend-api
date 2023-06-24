@@ -35,10 +35,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void login(LoginDto loginDto) throws Exception {               
+    public void login(LoginDto loginDto) throws Exception {
         Optional<User> user = userRepository.findByemail(loginDto.getEmail());
         if (user.isEmpty() || !user.get().getPassword().equals(loginDto.getPassword())) {
-            throw new Exception("Invalid email/password."); 
+            throw new Exception("Invalid email/password.");
         }
         return;
     }
@@ -49,7 +49,8 @@ public class UserServiceImpl implements UserService {
         user.setPassword(signupDto.getPassword());
         user.setFirstName(signupDto.getFirstName());
         user.setLastName(signupDto.getLastName());
+        user.setBirthday(signupDto.getBirthday());
+        user.setPhoneNumber(signupDto.getPhoneNumber());
         createUser(user);
-        return;
     }
 }

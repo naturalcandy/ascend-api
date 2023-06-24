@@ -2,7 +2,6 @@ package com.ascend.ascend.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Id;
 
@@ -10,20 +9,17 @@ import jakarta.persistence.Id;
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(nullable = false)
+    @Column
     private long id;
 
-    @Basic(optional = false)
-    @Column(nullable = false)
+    @Column
     private String email;   
 
-    @Basic(optional = false)
-    @Column(nullable = true)
+    @Column
     private String password;
 
-    @Basic(optional = true)
-    @Column(nullable = true)
-    private String firstname;
+    @Column
+    private String firstName;
 
     @Basic(optional = true)
     @Column(nullable = true)
@@ -43,13 +39,9 @@ public class User {
     }
     
     // getters and setters
-    public long getId() {
-        return this.id;
-    }
+    public long getId() { return this.id; }
     
-    public String getEmail() {
-        return this.email;
-    }
+    public String getEmail() { return this.email; }
 
     public String getPassword() {
         return this.password;
@@ -69,10 +61,11 @@ public class User {
         this.password = password;
     }
 
-    public void setFirstName(String firstname) {
-        this.firstname = firstname;
-    }
-    public void setLastName(String lastname) {
-        this.lastname = lastname;
-    }
+    public void setFirstName(String firstName) {this.firstName = firstName;}
+
+    public void setLastName(String lastName) {this.lastName= lastName;}
+
+    public void setBirthday(String birthday) {this.birthday = birthday;}
+
+    public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
 }
