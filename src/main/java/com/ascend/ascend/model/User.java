@@ -21,16 +21,26 @@ public class User {
     @Column
     private String firstName;
 
-    @Basic(optional = true)
-    @Column(nullable = true)
-    private String lastname;
+    @Column
+    private String lastName;
+
+    @Column
+    private String phoneNumber;
+
+    @Column
+    private String birthday;
 
     public User() {}
 
     // constructor
-    public User(String email, String password) {
+    public User(String email, String firstName, String lastName, String password,
+                String phoneNumber, String birthday) {
         this.email = email;
         this.password = password;
+        this.birthday = birthday;
+        this.phoneNumber = phoneNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     // toString
@@ -43,23 +53,19 @@ public class User {
     
     public String getEmail() { return this.email; }
 
-    public String getPassword() {
-        return this.password;
-    }
-    
-    public String getFirstName() {
-        return this.firstname;
-    }
-    public String getLastName() {
-        return this.lastname;
-    }
+    public String getPassword() { return this.password; }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public String getFirstName() { return this.firstName; }
+
+    public String getLastName() { return this.lastName; }
+
+    public String getPhoneNumber() {return this.phoneNumber;}
+
+    public String getBirthday() { return this.birthday; }
+
+    public void setEmail(String email) {this.email = email;}
+
+    public void setPassword(String password) {this.password = password;}
 
     public void setFirstName(String firstName) {this.firstName = firstName;}
 
