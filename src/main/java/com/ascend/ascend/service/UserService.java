@@ -15,8 +15,6 @@ public interface UserService {
     public User getUser(Long id);
     public List<User> getAllUsers();
 
-    public void login(LoginDto loginDto) throws Exception;
-
     public void signup(SignUpDto signUpDto) throws Exception;
 
 }

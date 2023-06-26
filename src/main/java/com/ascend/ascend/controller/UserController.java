@@ -23,16 +23,6 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-    
-    @PostMapping ("/login")
-    public ResponseEntity<?> login(@RequestBody LoginDto loginDto) {
-        try {
-            userService.login(loginDto);
-            return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }  
-    }
 
     @PostMapping ("/signup")
     public ResponseEntity<?> signup(@RequestBody SignUpDto signupDto) {

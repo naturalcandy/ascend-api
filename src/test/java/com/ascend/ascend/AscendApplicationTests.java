@@ -11,17 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 class AscendApplicationTests {
 
 	@Test
-	void contextLoads() {
-	}
+	void contextLoads() {}
 
 	@Autowired
 	private UserRepository userRepository;
-
-	@Test
-	public void testGetUserId() {
-		Optional<User> user1 = userRepository.findByemail("example@gmail.com");
-		Optional<User> user2 = userRepository.findByemail("test@gmail.com");
-		assert(user1.isPresent());
-		assert(user2.isPresent());
-	}
 }

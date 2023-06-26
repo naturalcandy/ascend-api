@@ -34,15 +34,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    @Override
-    public void login(LoginDto loginDto) throws Exception {
-        Optional<User> user = userRepository.findByemail(loginDto.getEmail());
-        if (user.isEmpty() || !user.get().getPassword().equals(loginDto.getPassword())) {
-            throw new Exception("Invalid email/password.");
-        }
-        return;
-    }
-
     public void signup(SignUpDto signupDto) throws Exception {
         User user = new User();
         user.setEmail(signupDto.getEmail());
