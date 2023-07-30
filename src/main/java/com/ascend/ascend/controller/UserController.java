@@ -1,7 +1,6 @@
 package com.ascend.ascend.controller;
 
-import com.ascend.ascend.dto.LoginDto;
-import com.ascend.ascend.dto.SignUpDto;
+import com.ascend.ascend.dto.UserSignUpDto;
 import com.ascend.ascend.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -24,8 +22,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping ("/signup")
-    public ResponseEntity<?> signup(@RequestBody SignUpDto signupDto) {
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody UserSignUpDto signupDto) {
         try {
             userService.signup(signupDto);
             return new ResponseEntity<>(HttpStatus.OK);

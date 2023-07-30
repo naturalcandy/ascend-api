@@ -3,10 +3,8 @@ import com.ascend.ascend.model.User;
 import com.ascend.ascend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ascend.ascend.dto.LoginDto;
-import com.ascend.ascend.dto.SignUpDto;
+import com.ascend.ascend.dto.UserSignUpDto;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -34,7 +32,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    public void signup(SignUpDto signupDto) throws Exception {
+    public void signup(UserSignUpDto signupDto) throws Exception {
         User user = new User();
         user.setEmail(signupDto.getEmail());
         user.setPassword(signupDto.getPassword());

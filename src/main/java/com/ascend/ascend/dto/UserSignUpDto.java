@@ -1,6 +1,6 @@
 package com.ascend.ascend.dto;
 
-public class SignUpDto {
+public class UserSignUpDto {
     public String email;
     public String password;
     public String firstName;
