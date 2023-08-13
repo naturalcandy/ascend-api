@@ -1,21 +1,48 @@
 package com.ascend.ascend.service;
-
+import com.ascend.ascend.model.User;
+import com.ascend.ascend.repository.UserRepository;
+import org.springframework.stereotype.Service;
+import com.ascend.ascend.dto.UserSignUpDto;
 import java.util.List;
 
-import com.ascend.ascend.model.User;
-import com.ascend.ascend.dto.UserSignUpDto;
+@Service
+public class UserService {
 
-public interface UserService {
+    private UserRepository userRepository;
 
-    public User createUser(User user);
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
-    // public User updateUser(User user);
-    public void deleteUser(Long id);
+    public User createUser(User user) {
+        return userRepository.save(user);
+    }
 
-    public User getUser(Long id);
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
 
-    public List<User> getAllUsers();
+    public User getUser(Long id) {
+        return userRepository.findById(id).get();
+    }
 
-    public void signup(UserSignUpDto signUpDto) throws Exception;
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
 
+    public void signup(UserSignUpDto signupDto) throws Exception {
+        User user = new User();
+        user.setEmail(signupDto.getEmail());
+        user.setPassword(signupDto.getPassword());
+        user.setFirstName(signupDto.getFirstName());
+        user.setLastName(signupDto.getLastName());
+        user.setBirthday(signupDto.getBirthday());
+        user.setPhoneNumber(signupDto.getPhoneNumber());
+        createUser(user);
+    }
+
+    public void savePlaidAccessToken(Long userId, String accessToken) {
+        User u = getUser(userId);
+        u.setPlaidAccessToken(accessToken);
+    }
 }
