@@ -4,18 +4,12 @@ import com.ascend.ascend.service.UserService;
 import com.plaid.client.ApiClient;
 import com.plaid.client.model.*;
 import com.plaid.client.request.PlaidApi;
-import okhttp3.ResponseBody;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
-import retrofit2.Call;
 import retrofit2.Response;
 
-
-import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/plaid")
@@ -66,20 +60,31 @@ public class PlaidController {
                System.out.println("Failed to create link token: " + linkTokenCreateResponse.errorBody().string());
                return null;
            }
-       } catch (IOException e) {
+       } catch (Exception e) {
            System.out.println("Failed to create link token");
            return null;
        }
     }
 
-    @PostMapping("/{user_id}/exchange_public_tokenreceive_public_token")
-    public String exchangePublicToken(@RequestBody String publicToken @PathVariable String user_id) {
+    @PostMapping("/{user_id}/exchange_public_token")
+    public void exchangePublicTokenForAccessToken(@RequestBody String publicToken, @PathVariable Long user_id) {
         ItemPublicTokenExchangeRequest itemPublicTokenExchangeRequest = new ItemPublicTokenExchangeRequest()
-            .publicToken(publicToken);
-        
-        ItemPublicTokenExchangeResponse itemPublicTokenExchangeResponse = plaidClient
-            .itemPublicTokenExchange(itemPublicTokenExchangeRequest)
-            .execute();
+                .publicToken(publicToken);
+
+        Response<ItemPublicTokenExchangeResponse> itemPublicTokenExchangeResponse = null;
+
+        try {
+            itemPublicTokenExchangeResponse = plaidClient
+                    .itemPublicTokenExchange(itemPublicTokenExchangeRequest)
+                    .execute();
+            if (itemPublicTokenExchangeResponse.isSuccessful()) {
+                String accessToken = itemPublicTokenExchangeResponse.body().getAccessToken();
+                userService.savePlaidAccessToken(user_id, accessToken);
+            } else {
+                System.out.println("Failed to exchange public token for access token: " + itemPublicTokenExchangeResponse.errorBody().string());
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to exchange public token for access token: " + e.toString());
+        }
     }
 }
-
