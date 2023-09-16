@@ -1,6 +1,6 @@
 # ascend-api
 
-![Logo](./assets/ascendLogo.png).  
+![Logo](./assets/ascendLogo.png)
 
 The backbone of the Ascend application, the Ascend API handles data processing, user authentication, and third-party integrations.
 
