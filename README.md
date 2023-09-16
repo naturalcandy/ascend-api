@@ -1,8 +1,6 @@
 # ascend-api
 
-![Logo](./assets/ascendLogo.png)
-
-The backbone of the Ascend application, the Ascend API handles data processing, user authentication, and third-party integrations.
+The backbone of the [Ascend](https://github.com/ndaruvala/ascend) application, the Ascend API handles data processing, user authentication, and third-party integrations.
 
 **Features:**
 
@@ -19,3 +17,5 @@ The backbone of the Ascend application, the Ascend API handles data processing, 
 * Real time alert system to notify users when reaching spending limits.
 
 * Financial goal setting/trackers.
+
+![Logo](./assets/ascendLogo.png)
